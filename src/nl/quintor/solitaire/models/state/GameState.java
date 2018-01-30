@@ -17,7 +17,7 @@ import java.util.Map;
  * <p>It can also hold a waste deck, a list of moves, the number of times the stock has been cycled, the base score, the bonus
  * time score and the start time of the game. These additional state variables can be used if additional features beyond
  * the base game are implemented.
- *
+ * <p>
  * <p>Almost all methods are basic getters and setters, except for {@link #remember(RevertibleMove)},
  * {@link #forget(RevertibleMove)}, {@link #isGameOver()} and {@link #getScore()}.
  */
@@ -33,6 +33,30 @@ public final class GameState {
     private LocalDateTime startTime = LocalDateTime.now();
     private boolean gameLost = false;
     private boolean gameWon = false;
+    //change it later
+    static String[] columnNames = {"one", "two", "three", "four", "five", "six", "seven"};
+    static String[] stackPilesNames = {"one", "two", "three", "four"};
+
+    public GameState() {
+        //generate new deck full of cards
+        Deck allCards = Deck.createDefaultDeck();
+        //split deck  cards between columns and stock
+        for (int i = 0; i < GameState.columnNames.length; i++) {
+            Deck deck = new Deck(DeckType.COLUMN);
+            for (int cardCounter = 0; cardCounter < i + 1; cardCounter++) {
+                deck.add(allCards.get(cardCounter));
+                deck.setInvisibleCards(i);
+                allCards.remove(cardCounter);
+            }
+            columns.put(GameState.columnNames[i], deck);
+        }
+        this.stock.addAll(allCards);
+        //initializing stockPiles
+        for (int i = 0; i < 4; i++) {
+            Deck deck = new Deck(DeckType.STACK);
+            this.stackPiles.put(GameState.stackPilesNames[i], deck);
+        }
+    }
 
     /**
      * Getter for waste deck.
@@ -117,6 +141,7 @@ public final class GameState {
 
     /**
      * Getter for timeScore.
+     * +
      *
      * @return time score
      */
@@ -210,7 +235,7 @@ public final class GameState {
      *
      * @param move move to be added to the moves list
      */
-    public void remember(RevertibleMove move){
+    public void remember(RevertibleMove move) {
         moves.add(move);
     }
 
@@ -219,7 +244,7 @@ public final class GameState {
      *
      * @param move move to be removed from the moves list
      */
-    public void forget(RevertibleMove move){
+    public void forget(RevertibleMove move) {
         moves.remove(move);
     }
 
@@ -229,10 +254,10 @@ public final class GameState {
      * @return String representation of this GameState object
      */
     @Override
-    public String toString(){
+    public String toString() {
         long duration = Duration.between(startTime, LocalDateTime.now()).getSeconds();
         return moves.size() + " move(s) played in " + String.format("%02d", duration / 3600) + ":" +
-            String.format("%02d", duration / 60) +
-            ":" + String.format("%02d", duration % 60) + " for " + getScore() + " points";
+                String.format("%02d", duration / 60) +
+                ":" + String.format("%02d", duration % 60) + " for " + getScore() + " points";
     }
 }

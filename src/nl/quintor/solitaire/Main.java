@@ -45,7 +45,7 @@ public class Main {
         while (!gameState.isGameOver()) {
             // show gamestate to the player and ask for next move
             String playerInput = ui.refreshAndRequestMove(gameState, moves).toUpperCase();
-
+            System.out.println(possibleMoves.toString());
             Move move = possibleMoves
                 .getOrDefault(playerInput.substring(0,1), null)
                 .createInstance(playerInput);
