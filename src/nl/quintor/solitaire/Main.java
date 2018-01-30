@@ -4,6 +4,7 @@ import nl.quintor.solitaire.game.moves.Move;
 import nl.quintor.solitaire.game.moves.Quit;
 import nl.quintor.solitaire.game.moves.ex.MoveException;
 import nl.quintor.solitaire.models.state.GameState;
+import nl.quintor.solitaire.ui.PlayField;
 import nl.quintor.solitaire.ui.UI;
 
 import java.util.Arrays;
@@ -33,7 +34,7 @@ public class Main {
      */
     public static void main(String... args){
         // initialize the GameState, UI and all possible moves
-        UI ui = null;
+        UI ui = new PlayField();
         GameState gameState = new GameState();
         List<String> keys = Arrays.asList("Q");
         List<Move> moves = Arrays.asList(new Quit());

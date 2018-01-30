@@ -46,7 +46,7 @@ features you are going to pursue.
    and it cannot be guaranteed that your teachers can help you if you are stuck. If you are unfamiliar with such 
    a framework, it's probably best not to use one because there's enough new stuff to learn without the added burden.
 
-   Whichever you choose, your code has to implement the [UI-interface](./src/main/java/nl/quintor/solitaire/ui/UI.java),
+   Whichever you choose, your code has to implement the [UI-interface](src/nl/quintor/solitaire/ui/UI.java),
    so please study it carefully.
    
    -  **1.1: Game time, number of moves played and score**  <p>
@@ -55,7 +55,7 @@ features you are going to pursue.
      _Points_  
      0.5  <p>
      _Description_  
-     Your UI must show the total game time, the number of moves played (as in, the number of moves in [GameState](./src/main/java/nl/quintor/solitaire/models/state/GameState.java).moves),
+     Your UI must show the total game time, the number of moves played (as in, the number of moves in [GameState](src/nl/quintor/solitaire/models/state/GameState.java).moves),
      and the current total score (as in, the result of GameState.getScore()).  
 
    -  **1.2: Columns with invisible cards**  <p>
@@ -66,7 +66,7 @@ features you are going to pursue.
      _Description_  
      There are 7 columns in a standard Solitaire game. They start of with increasing lengths (1-7 cards), 
      and all cards are visually present, but all but the last card are turned upside-down. Your UI should 
-     show these columns as described. The [Deck](./src/main/java/nl/quintor/solitaire/models/deck/Deck.java) class parameter 
+     show these columns as described. The [Deck](src/nl/quintor/solitaire/models/deck/Deck.java) class parameter 
      "invisibleCards" facilitates implementation of this feature.    
 
    -  **1.3: Stock with top card visible**  <p>
@@ -136,14 +136,14 @@ features you are going to pursue.
    _Description_  
    The game logic is the core of the application. It will handle all action processing, check if user actions are 
    actually allowed under the game rules and make sure the game state remains valid (for example, that there are always 
-   52 cards in play). It also initializes the [GameState](./src/main/java/nl/quintor/solitaire/models/state/GameState.java) object and monitors it, for example in order to detect the game 
+   52 cards in play). It also initializes the [GameState](src/nl/quintor/solitaire/models/state/GameState.java) object and monitors it, for example in order to detect the game 
    has been won.
    The game logic is the code that is most critical and has the biggest potential for hidden bugs like unexpected
    NullPointerExceptions or ArrayIndexOutOfBoundExceptions. Be careful and think things through.  
    
    To help you and provide some structure, there are two interfaces that you can use to create Move-classes, which
-   represent player actions: [Move](./src/main/java/nl/quintor/solitaire/game/moves/Move.java) and 
-   [RevertibleMove](./src/main/java/nl/quintor/solitaire/game/moves/RevertibleMove.java). Start off with Move, and upgrade
+   represent player actions: [Move](src/nl/quintor/solitaire/game/moves/Move.java) and 
+   [RevertibleMove](src/nl/quintor/solitaire/game/moves/RevertibleMove.java). Start off with Move, and upgrade
    to RevertibleMove when the need arises.
    
    -  **2.1: Initialize the GameState**  <p>
@@ -152,7 +152,7 @@ features you are going to pursue.
       _Points_  
       3  <p>
       _Description_  
-      The [GameState](./src/main/java/nl/quintor/solitaire/models/state/GameState.java) is the most important object in the game. The UI visualizes it, and the game logic manipulates it. At 
+      The [GameState](src/nl/quintor/solitaire/models/state/GameState.java) is the most important object in the game. The UI visualizes it, and the game logic manipulates it. At 
       the start of a game, a new GameState instance must be created, and it various components must be initialized as well.
       For example, 52 cards have to be dealt. Make sure no null values remain.
      
@@ -167,7 +167,7 @@ features you are going to pursue.
       in the stock that really isn't there.
       You can choose to use a single deck to hold up-faced and down-faced cards (the stock deck itself), and cycle
       cards through it. You can also use a separate deck for down-faced cards (the waste). That's why the waste deck is 
-      present in the [GameState](./src/main/java/nl/quintor/solitaire/models/state/GameState.java) class. It's up to you.
+      present in the [GameState](src/nl/quintor/solitaire/models/state/GameState.java) class. It's up to you.
      
    -  **2.3: Move card(s)**  <p>
       _Type_  
@@ -302,8 +302,8 @@ features you are going to pursue.
       4  <p>
       _Description_  
       Moves that influence the game state or the score should be revertible. To implement this feature, make those moves 
-      implement [RevertibleMove](./src/main/java/nl/quintor/solitaire/game/moves/RevertibleMove.java) instead of 
-      [Move](./src/main/java/nl/quintor/solitaire/game/moves/Move.java). This will add a method revert() to their class 
+      implement [RevertibleMove](src/nl/quintor/solitaire/game/moves/RevertibleMove.java) instead of 
+      [Move](src/nl/quintor/solitaire/game/moves/Move.java). This will add a method revert() to their class 
       definition, into which you can put the logic of the revert operation. In order to save your moves for reverting, you 
       can use GameState's moves list, which can only contain RevertibleMove objects. Conveniently, GameState has two 
       methods for you called forget(RevertibleMove) and remember(RevertibleMove) which you can use.

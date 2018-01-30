@@ -78,7 +78,7 @@ existential questions about your life choices pop up into your head.
 
 Not this time! Most IDE's (including NetBeans, IntelliJ IDEA and Eclipse) include Maven out of the box. 
 All you need to do is import or open this project (as a Maven project) and everything will be taken care
-of. You can simply run nl.quintor.solitaire.Main from the IDE to start the application.
+of. You can simply run Main from the IDE to start the application.
 
 If you are feeling adventurous and/or self-loathing and don't want to use an IDE, you can install Maven 
 yourself from the download link above. You can then build and run the application using:
