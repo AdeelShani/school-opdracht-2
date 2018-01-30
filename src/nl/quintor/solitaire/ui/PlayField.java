@@ -19,11 +19,12 @@ public class PlayField implements nl.quintor.solitaire.ui.UI {
 
     @Override
     public void refresh(GameState gameState) {
-
+        System.out.println(gameState.toString());
     }
 
     @Override
     public String refreshAndRequestMove(GameState gameState, Collection<Move> moves) {
+        this.refresh(gameState);
         return null;
     }
 }
