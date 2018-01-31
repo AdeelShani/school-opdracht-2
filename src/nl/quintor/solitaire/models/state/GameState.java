@@ -6,10 +6,7 @@ import nl.quintor.solitaire.models.deck.DeckType;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Class that holds the complete state of the game, consisting of 1 stock, 7 columns and 4 stacks of {@link Deck}s, and
@@ -35,11 +32,12 @@ public final class GameState {
     private boolean gameWon = false;
     //change it later
     public static String[] columnNames = {"A", "B", "C", "D", "E", "F", "G"};
-    static String[] stackPilesNames = {"SA", "SB", "SC", "SD"};
+    public static String[] stackPilesNames = {"SA", "SB", "SC", "SD"};
 
     public GameState() {
         //generate new deck full of cards
         Deck allCards = Deck.createDefaultDeck();
+        Collections.shuffle(allCards);
         //split deck  cards between columns and stock
         for (int i = 0; i < GameState.columnNames.length; i++) {
             Deck deck = new Deck(DeckType.COLUMN);
