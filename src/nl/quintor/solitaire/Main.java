@@ -2,6 +2,7 @@ package nl.quintor.solitaire;
 
 import nl.quintor.solitaire.game.moves.Move;
 import nl.quintor.solitaire.game.moves.Quit;
+import nl.quintor.solitaire.game.moves.CycleStock;
 import nl.quintor.solitaire.game.moves.ex.MoveException;
 import nl.quintor.solitaire.models.state.GameState;
 import nl.quintor.solitaire.ui.PlayField;

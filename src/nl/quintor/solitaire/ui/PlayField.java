@@ -77,6 +77,7 @@ public class PlayField implements nl.quintor.solitaire.ui.UI {
         Scanner input = new Scanner(System.in);
 
         this.refresh(gameState);
+        System.out.println("Available moves: ");
         System.out.print("What action do you want to take: ");
 
         return input.nextLine();
