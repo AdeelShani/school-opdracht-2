@@ -19,20 +19,20 @@ import java.util.*;
  * {@link #forget(RevertibleMove)}, {@link #isGameOver()} and {@link #getScore()}.
  */
 public final class GameState {
-    private final Deck waste = new Deck(DeckType.WASTE);
-    private final Deck stock = new Deck(DeckType.STOCK);
-    private final Map<String, Deck> stackPiles = new LinkedHashMap<>(); // entries of header and deck
-    private final Map<String, Deck> columns = new LinkedHashMap<>(); // entries of header and deck
-    private final List<RevertibleMove> moves = new ArrayList<>();
-    private int stockCycles = 0;
-    private long baseScore = 0;
-    private long timeScore = 0;
-    private LocalDateTime startTime = LocalDateTime.now();
-    private boolean gameLost = false;
-    private boolean gameWon = false;
+    private final Deck                 waste           = new Deck(DeckType.WASTE);
+    private final Deck                 stock           = new Deck(DeckType.STOCK);
+    private final Map<String, Deck>    stackPiles      = new LinkedHashMap<>(); // entries of header and deck
+    private final Map<String, Deck>    columns         = new LinkedHashMap<>(); // entries of header and deck
+    private final List<RevertibleMove> moves           = new ArrayList<>();
+    private       int                  stockCycles     = 0;
+    private       long                 baseScore       = 0;
+    private       long                 timeScore       = 0;
+    private       LocalDateTime        startTime       = LocalDateTime.now();
+    private       boolean              gameLost        = false;
+    private       boolean              gameWon         = false;
     //change it later
-    public static String[] columnNames = {"A", "B", "C", "D", "E", "F", "G"};
-    public static String[] stackPilesNames = {"SA", "SB", "SC", "SD"};
+    public static String[]             columnNames     = {"A", "B", "C", "D", "E", "F", "G"};
+    public static String[]             stackPilesNames = {"SA", "SB", "SC", "SD"};
 
     public GameState() {
         //generate new deck full of cards
@@ -40,21 +40,17 @@ public final class GameState {
         Collections.shuffle(allCards);
         //split deck  cards between columns and stock
         for (int i = 0; i < GameState.columnNames.length; i++) {
+            //create new deck and add cards to it
             Deck deck = new Deck(DeckType.COLUMN);
-            for (int cardCounter = 0; cardCounter < i + 1; cardCounter++) {
-                deck.add(allCards.get(cardCounter));
-                deck.setInvisibleCards(i);
-                allCards.remove(cardCounter);
-            }
-
+            deck.addAll(allCards.subList(0, i + 1));
+            deck.setInvisibleCards(i);
+            //delete added cards from main deck
+            allCards.subList(0, i + 1).clear();
             columns.put(GameState.columnNames[i], deck);
         }
         this.stock.addAll(allCards);
         //initializing stockPiles
-        for (int i = 0; i < 4; i++) {
-            Deck deck = new Deck(DeckType.STACK);
-            this.stackPiles.put(GameState.stackPilesNames[i], deck);
-        }
+        for (int i = 0; i < 4; i++) this.stackPiles.put(GameState.stackPilesNames[i], new Deck(DeckType.STACK));
     }
 
     /**

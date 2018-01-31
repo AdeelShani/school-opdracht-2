@@ -25,89 +25,92 @@ public class PlayField implements nl.quintor.solitaire.ui.UI {
     @Override
     public void refresh(GameState gameState) {
         System.out.println(gameState.toString());
+        System.out.println("");
         this.printStockAndStackPiles(gameState);
         System.out.println("");
         this.printColumns(gameState);
     }
 
     private void printStockAndStackPiles(GameState gameState) {
-        String[] linesToPrint = {"\t", "\t"};
-        Deck stockDeck = gameState.getStock();
-        int stockCycles = gameState.getStockCycles();
-        Map<String, Deck> stackPiles = gameState.getStackPiles();
-        //@todo if size() under 0 add space
-        linesToPrint[0] += stockCycles + "(" + stockDeck.size() + ")";
-        if (stockDeck.size() > stockCycles) {
-            linesToPrint[1] += stockDeck.get(stockCycles).toShortString();
-        } else {
-            linesToPrint[1] += "--";
-        }
+        String            firstLine   = "\t", SecondLine = "\t";
+        Deck              stockDeck   = gameState.getStock();
+        int               stockCycles = gameState.getStockCycles();
+        Map<String, Deck> stackPiles  = gameState.getStackPiles();
 
-        linesToPrint[0] += this.multiplyString(6 - linesToPrint[0].length(), " ")
-                + this.multiplyString(4, "\t");
-        linesToPrint[1] += this.multiplyString(6 - linesToPrint[1].length(), " ")
+        firstLine += stockCycles + "(" + stockDeck.size() + ")";
+        SecondLine += stockDeck.size() > stockCycles ? stockDeck.get(stockCycles).toShortString() : "--";
+
+        //adding tabs and spaces for ui
+        firstLine += this.multiplyString(6 - firstLine.length(), " ")
+                + this.multiplyString(5, "\t");
+
+        SecondLine += this.multiplyString(6 - SecondLine.length(), " ")
                 + this.multiplyString(4, "\t");
 
         //preparing stackPiles
-        for (int i = 0; i < GameState.stackPilesNames.length; i++) {
-            linesToPrint[0] += "\t" + GameState.stackPilesNames[i] + "\t";
-        }
+        firstLine += String.join("\t\t", GameState.stackPilesNames);
         //values
         for (int i = 0; i < GameState.stackPilesNames.length; i++) {
-            String stackCard = "--";
-            Deck stackPile = stackPiles.get(GameState.stackPilesNames[i]);
-            if (stackPile.size() > 0) {
-                stackCard = stackPile.get((stackPiles.size() - 1)).toShortString();
-            }
-            linesToPrint[1] += "\t" + stackCard + "\t";
+            Deck   stackPile = stackPiles.get(GameState.stackPilesNames[i]);
+            String stackCard = stackPile.size() > 0 ? stackPile.get((stackPiles.size() - 1)).toShortString() : "--";
+            SecondLine += "\t" + stackCard + "\t";
         }
-        System.out.println(linesToPrint[0]);
-        System.out.println(linesToPrint[1]);
+
+        System.out.println(firstLine);
+        System.out.println(SecondLine);
     }
 
+    /**
+     * This method multiples string
+     *
+     * @param amount        int
+     * @param toReplaceWith String
+     * @return String
+     * @source https://stackoverflow.com/questions/2255500/can-i-multiply-strings-in-java-to-repeat-sequences
+     */
     private String multiplyString(int amount, String toReplaceWith) {
         return new String(new char[amount]).replace("\0", toReplaceWith);
-
     }
 
     private void printColumns(GameState gameState) {
-        Map<String, Deck> columns = gameState.getColumns();
-        String[] columnNames = GameState.columnNames;
-        int maxRows = 0;
-        //@todo try to find a solution without for loop for this
-        for (int i = 0; i < columnNames.length; i++) {
-            System.out.print("\t" + columnNames[i] + "\t");
-        }
-        System.out.println("");
+        Map<String, Deck> columns     = gameState.getColumns();
+        String[]          columnNames = GameState.columnNames;
+        int               maxRows     = 0;
         //@todo find better alternative for this code to count maxNumber
         for (int i = 0; i < columnNames.length; i++) {
-            String key = columnNames[i];
-            Deck deck = columns.get(key);
+            Deck deck = columns.get(columnNames[i]);
             if (deck.size() > maxRows) {
                 maxRows = deck.size();
             }
         }
+        //maybe replace code above with this
+        /*for (Map.Entry<String,Deck> entry: columns.entrySet()) {
+            Deck deck = entry.getValue();
+            maxRows = deck.size() > maxRows ? deck.size() : maxRows;
+        }*/
         maxRows += 1;
         if (maxRows > 22) {
             maxRows = 22;
         }
 
+        //starting to print columns and cards
+        System.out.print("\t" + String.join("\t\t", columnNames));
+        System.out.println("");
+
         for (int i = 0; i < maxRows; i++) {
-            String rowToPrint = "" + i + "\t";
+            StringBuilder rowToPrint = new StringBuilder(32);
+            rowToPrint.append(i).append("\t");
             for (int columnNumber = 0; columnNumber < columnNames.length; columnNumber++) {
-                String key = GameState.columnNames[columnNumber];
-                Deck columnDeck = columns.get(key);
+                String key        = GameState.columnNames[columnNumber];
+                Deck   columnDeck = columns.get(key);
                 if (columnDeck.size() > i) {
-                    Card card = columnDeck.get(i);
-                    if (i >= columnDeck.getInvisibleCards()) {
-                        rowToPrint += card.toShortString();
-                    } else {
-                        rowToPrint += "??";
-                    }
+                    Card   card     = columnDeck.get(i);
+                    String cardText = i >= columnDeck.getInvisibleCards() ? card.toShortString() : "??";
+                    rowToPrint.append(cardText);
                 }
-                rowToPrint += "\t\t";
+                rowToPrint.append("\t\t");
             }
-            System.out.println(rowToPrint);
+            System.out.println(rowToPrint.toString());
         }
     }
 

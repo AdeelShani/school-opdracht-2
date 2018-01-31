@@ -34,16 +34,15 @@ public class Main {
      */
     public static void main(String... args) {
         // initialize the GameState, UI and all possible moves
-        UI ui = new PlayField();
-        GameState gameState = new GameState();
-        List<String> keys = Arrays.asList("Q");
-        List<Move> moves = Arrays.asList(new Quit());
+        UI                    ui            = new PlayField();
+        GameState             gameState     = new GameState();
+        List<String>          keys          = Arrays.asList("Q");
+        List<Move>            moves         = Arrays.asList(new Quit());
         HashMap<String, Move> possibleMoves = new HashMap<>();
         for (int i = 0; i < keys.size(); i++) possibleMoves.put(keys.get(i), moves.get(i));
 
         // game loop
         while (!gameState.isGameOver()) {
-            // show gamestate to the player and ask for next move
             String playerInput = ui.refreshAndRequestMove(gameState, moves).toUpperCase();
             System.out.println(possibleMoves.toString());
             Move move = possibleMoves
