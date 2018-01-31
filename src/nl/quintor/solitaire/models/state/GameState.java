@@ -34,8 +34,8 @@ public final class GameState {
     private boolean gameLost = false;
     private boolean gameWon = false;
     //change it later
-    static String[] columnNames = {"one", "two", "three", "four", "five", "six", "seven"};
-    static String[] stackPilesNames = {"one", "two", "three", "four"};
+    public static String[] columnNames = {"A", "B", "C", "D", "E", "F", "G"};
+    static String[] stackPilesNames = {"SA", "SB", "SC", "SD"};
 
     public GameState() {
         //generate new deck full of cards
@@ -48,6 +48,7 @@ public final class GameState {
                 deck.setInvisibleCards(i);
                 allCards.remove(cardCounter);
             }
+
             columns.put(GameState.columnNames[i], deck);
         }
         this.stock.addAll(allCards);

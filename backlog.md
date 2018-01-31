@@ -49,7 +49,7 @@ features you are going to pursue.
    Whichever you choose, your code has to implement the [UI-interface](src/nl/quintor/solitaire/ui/UI.java),
    so please study it carefully.
    
-   -  **1.1: Game time, number of moves played and score**  <p>
+   -  **1.1: Game time, number of moves played and score**  Done<p>
      _Type_  
      MVP UI Feature     
      _Points_  
@@ -58,7 +58,7 @@ features you are going to pursue.
      Your UI must show the total game time, the number of moves played (as in, the number of moves in [GameState](src/nl/quintor/solitaire/models/state/GameState.java).moves),
      and the current total score (as in, the result of GameState.getScore()).  
 
-   -  **1.2: Columns with invisible cards**  <p>
+   -  **1.2: Columns with invisible cards**  Done<p>
      _Type_  
      MVP UI Feature     
      _Points_  
