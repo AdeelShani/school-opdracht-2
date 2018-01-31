@@ -87,7 +87,7 @@ features you are going to pursue.
      _Description_  
      The Stack Piles are A-2-...-Q-K sorted, with the only top card visible.
 
-   -  **1.5: Deck & card headers**  <p>
+   -  **1.5: Deck & card headers**  Done<p>
      _Type_  
      MVP UI Feature  
      _Points_  
