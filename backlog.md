@@ -97,7 +97,7 @@ features you are going to pursue.
      you choose to create a command line interface, where the headers help the user to indicate which card they want to 
      move to where, for example "move A5 SA" for move card 5 from column A to Stack Pile A.
    
-   -  **1.6: Available moves**  <p>
+   -  **1.6: Available moves**  Done<p>
      _Type_  
      MVP UI Feature  
      _Points_  
