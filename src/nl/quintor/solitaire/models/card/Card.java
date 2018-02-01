@@ -1,6 +1,6 @@
 package nl.quintor.solitaire.models.card;
 
-/**<p>
+/**
  * Basic Card class. Each card has a {@link Suit} and a {@link Rank}, which are translated to an ordinal
  * value much like an {@link Enum}'s. The ordinal is final and unique, and forms the basis of the
  * {@link #hashCode()} and {@link #equals(Object)} methods. The ordinal also forms the basis for the natural
@@ -8,11 +8,11 @@ package nl.quintor.solitaire.models.card;
  * {@link java.util.Comparator}{@literal <}{@link Card}{@literal >}.
  */
 public final class Card implements Comparable<Card> {
-    private final Suit suit;
-    private final Rank rank;
-    private final int ordinal;
-    private String description;
-    private String shortDescription;
+    private final Suit   suit;
+    private final Rank   rank;
+    private final int    ordinal;
+    private       String description;
+    private       String shortDescription;
 
     /**
      * Create a new Card object with the provided {@link Suit} and {@link Rank}. The Card's ordinal value is

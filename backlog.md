@@ -181,7 +181,7 @@ features you are going to pursue.
       implemented, the player has a possibility to feed information into the system (card x to stack pile a, please). You 
       have to find the source deck, source card(s) and destination deck before you can execute the move.
       
-   -  **2.4: Flip invisible cards upon exposure**  <p>
+   -  **2.4: Flip invisible cards upon exposure**  Done<p>
       _Type_  
       MVP Logic Feature  
       _Points_  
@@ -236,15 +236,7 @@ features you are going to pursue.
          do some further checks. Like if the destination deck happens to be the source deck, for example.
       
       -  **2.6.3: Card-level legality checks**  <p>
-         _Type_  
-         MVP Logic Subfeature  
-         _Points_  
-         4  <p>
-         _Description_  
-         After the deck-level decks, you can grab the card(s) that have to be transferred and take a look at them. For
-         example, the first card on a stack pile must be an Ace, and the next card on a column must be of a different 
-         color (red and black) as the previous card.        
-
+ 
 ### Optional features
 -  **3: Optional User Interface**  <p>
    _Type_  

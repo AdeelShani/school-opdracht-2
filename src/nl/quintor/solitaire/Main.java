@@ -35,24 +35,34 @@ public class Main {
         // initialize the GameState, UI and all possible moves
         UI                    ui            = new PlayField();
         GameState             gameState     = new GameState();
-        List<String>          keys          = Arrays.asList("C", "M", "R", "H", "Q");
-        List<Move>            moves         = Arrays.asList(new CycleStock(), new MoveCard(), new Revert(), new Help(), new Quit());
+        List<String>          keys          = Arrays.asList("C", "M", "H", "Q");
+        List<Move>            moves         = Arrays.asList(new CycleStock(), new MoveCard(), new Help(), new Quit());
         HashMap<String, Move> possibleMoves = new HashMap<>();
         for (int i = 0; i < keys.size(); i++) possibleMoves.put(keys.get(i), moves.get(i));
 
+        try {
+            String instructions = possibleMoves.get("H").createInstance("*").apply(gameState);
+            ui.setMessage(instructions);
+        } catch (Exception e) {
+
+        }
         // game loop
         while (!gameState.isGameOver()) {
             String playerInput = ui.refreshAndRequestMove(gameState, moves).toUpperCase();
-            System.out.println(possibleMoves.toString());
-            Move move = possibleMoves
-                    .getOrDefault(playerInput.substring(0, 1), null)
-                    .createInstance(playerInput);
-
             try {
-                ui.setMessage(move.apply(gameState));
-            } catch (MoveException e) {
-                ui.setErrorMessage(e.getMessage());
+                Move move = possibleMoves
+                        .getOrDefault(playerInput.substring(0, 1), null)
+                        .createInstance(playerInput);
+                try {
+                    ui.setMessage(move.apply(gameState));
+                } catch (MoveException e) {
+                    ui.setErrorMessage(e.getMessage());
+                }
+            } catch (Exception e) {
+                ui.setErrorMessage("Unknown Move");
+
             }
+
         }
 
         if (gameState.isGameWon()) {

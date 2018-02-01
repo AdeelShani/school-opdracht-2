@@ -1,5 +1,6 @@
 package nl.quintor.solitaire.ui;
 
+import nl.quintor.solitaire.Helpers.Data;
 import nl.quintor.solitaire.game.moves.Move;
 import nl.quintor.solitaire.models.card.Card;
 import nl.quintor.solitaire.models.deck.Deck;
@@ -12,14 +13,17 @@ import java.util.Scanner;
 
 public class PlayField implements nl.quintor.solitaire.ui.UI {
 
+    private String msg      = "";
+    private String errorMsg = "";
+
     @Override
     public void setMessage(String message) {
-
+        this.msg = message;
     }
 
     @Override
     public void setErrorMessage(String message) {
-
+        this.errorMsg = "[Error]: " + message;
     }
 
     @Override
@@ -29,6 +33,13 @@ public class PlayField implements nl.quintor.solitaire.ui.UI {
         this.printStockAndStackPiles(gameState);
         System.out.println("");
         this.printColumns(gameState);
+        System.out.println("");
+        if (!this.msg.isEmpty()) {
+            System.out.println(this.msg);
+        }
+        if (!this.errorMsg.isEmpty()) {
+            System.out.println(errorMsg);
+        }
     }
 
     private void printStockAndStackPiles(GameState gameState) {
@@ -36,16 +47,17 @@ public class PlayField implements nl.quintor.solitaire.ui.UI {
         Deck              stockDeck   = gameState.getStock();
         int               stockCycles = gameState.getStockCycles();
         Map<String, Deck> stackPiles  = gameState.getStackPiles();
+        Data              dataHelper  = new Data();
 
         firstLine += stockCycles + "(" + stockDeck.size() + ")";
         SecondLine += stockDeck.size() > stockCycles ? stockDeck.get(stockCycles).toShortString() : "--";
 
         //adding tabs and spaces for ui
-        firstLine += this.multiplyString(6 - firstLine.length(), " ")
-                + this.multiplyString(5, "\t");
+        firstLine += dataHelper.multiplyString(6 - firstLine.length(), " ")
+                + dataHelper.multiplyString(5, "\t");
 
-        SecondLine += this.multiplyString(6 - SecondLine.length(), " ")
-                + this.multiplyString(4, "\t");
+        SecondLine += dataHelper.multiplyString(6 - SecondLine.length(), " ")
+                + dataHelper.multiplyString(4, "\t");
 
         //preparing stackPiles
         firstLine += String.join("\t\t", GameState.stackPilesNames);
@@ -60,18 +72,6 @@ public class PlayField implements nl.quintor.solitaire.ui.UI {
         System.out.println(SecondLine);
     }
 
-    /**
-     * This method multiples string
-     *
-     * @param amount        int
-     * @param toReplaceWith String
-     * @return String
-     * @source https://stackoverflow.com/questions/2255500/can-i-multiply-strings-in-java-to-repeat-sequences
-     */
-    private String multiplyString(int amount, String toReplaceWith) {
-        amount = amount < 0 ? 0 : amount;
-        return new String(new char[amount]).replace("\0", toReplaceWith);
-    }
 
     private void printColumns(GameState gameState) {
         Map<String, Deck> columns     = gameState.getColumns();

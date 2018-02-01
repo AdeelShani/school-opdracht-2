@@ -30,7 +30,6 @@ public final class GameState {
     private       LocalDateTime        startTime       = LocalDateTime.now();
     private       boolean              gameLost        = false;
     private       boolean              gameWon         = false;
-    //change it later
     public static String[]             columnNames     = {"A", "B", "C", "D", "E", "F", "G"};
     public static String[]             stackPilesNames = {"SA", "SB", "SC", "SD"};
 

@@ -8,7 +8,7 @@ import java.util.Collection;
 /**
  * The basic UI interface, which can be used to implement a suitable UI using any technology.
  */
-public interface UI{
+public interface UI {
     /**
      * Set a message to show the player the next time {@link #refresh(GameState)} is called. This message
      * should be shown as a non-error message.
@@ -37,7 +37,7 @@ public interface UI{
      * or may not refresh more often.
      *
      * @param gameState the game state to be visualized by the UI
-     * @param moves the moves that are possible in this game state
+     * @param moves     the moves that are possible in this game state
      * @return String representation of the player request
      */
     String refreshAndRequestMove(GameState gameState, Collection<Move> moves);

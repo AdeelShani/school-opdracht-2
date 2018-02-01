@@ -52,7 +52,7 @@ public final class Deck extends ArrayList<Card> {
      *
      * @param deckType type of this Deck.
      */
-    public Deck(DeckType deckType){
+    public Deck(DeckType deckType) {
         this.deckType = deckType;
     }
 
@@ -61,7 +61,7 @@ public final class Deck extends ArrayList<Card> {
      *
      * @return a standard deck of cards without Jokers.
      */
-    public static Deck createDefaultDeck(){
+    public static Deck createDefaultDeck() {
         return IntStream.range(0, 52).mapToObj(Card::new).collect(Collectors.toCollection(Deck::new));
     }
 
@@ -70,7 +70,7 @@ public final class Deck extends ArrayList<Card> {
      *
      * @return a standard deck of cards with Jokers.
      */
-    public static Deck createDefaultDeckWithJokers(){
+    public static Deck createDefaultDeckWithJokers() {
         return IntStream.range(0, 54).mapToObj(Card::new).collect(Collectors.toCollection(Deck::new));
     }
 
@@ -79,11 +79,11 @@ public final class Deck extends ArrayList<Card> {
      *
      * @return a piquet deck of cards.
      */
-    public static Deck createPiquetDeck(){
+    public static Deck createPiquetDeck() {
         return IntStream.range(0, 52)
-            .filter(i -> i % 13 > 4)
-            .mapToObj(Card::new)
-            .collect(Collectors.toCollection(Deck::new));
+                .filter(i -> i % 13 > 4)
+                .mapToObj(Card::new)
+                .collect(Collectors.toCollection(Deck::new));
     }
 
     /**
@@ -131,14 +131,14 @@ public final class Deck extends ArrayList<Card> {
      * @param sorter order in which the cards have to be sorted
      * @return representation of the {@link Card}s in this Deck, with comparison indicators
      */
-    public String toComparativeString(Comparator<Card> sorter){
+    public String toComparativeString(Comparator<Card> sorter) {
         List<Card> sortedList = new Deck(this);
         sortedList.sort(sorter);
         return sortedList.size() == 0 ? "[]" : "[" + sortedList.get(0).toShortString() +
-            IntStream.range(1, sortedList.size())
-                .mapToObj(i -> (sorter.compare(sortedList.get(i-1), sortedList.get(i)) < 0 ? " < " : " = ") +
+                IntStream.range(1, sortedList.size())
+                        .mapToObj(i -> (sorter.compare(sortedList.get(i - 1), sortedList.get(i)) < 0 ? " < " : " = ") +
                                 sortedList.get(i).toShortString())
-                .collect(Collectors.joining()) + "]";
+                        .collect(Collectors.joining()) + "]";
     }
 
     /**

@@ -5,6 +5,7 @@ import nl.quintor.solitaire.models.state.GameState;
 
 public class Revert implements RevertibleMove {
     private final static String name = System.getProperty("os.name").contains("Windows") ? "Revert move" : "Revert move";
+
     @Override
     public String revert(GameState gameState) {
         return null;

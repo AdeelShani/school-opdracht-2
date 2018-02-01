@@ -11,16 +11,16 @@ public class CycleStock implements Move {
     private final static String name = System.getProperty("os.name").contains("Windows") ? "Cycle Stock" : "Cycle Stock";
 
     @Override
-    public String apply(GameState gameState) throws MoveException {
+    public String apply(GameState gameState)  {
         Deck stock      = gameState.getStock();
         int  stockCycle = gameState.getStockCycles() + 1;
         stockCycle = stock.size() < stockCycle ? 0 : stockCycle;
         gameState.setStockCycles(stockCycle);
-        return null;
+        return "Stock is cycled";
     }
 
     @Override
     public Move createInstance(String playerInput) {
-        return null;
+        return new CycleStock();
     }
 }
