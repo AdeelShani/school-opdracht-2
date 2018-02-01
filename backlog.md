@@ -146,7 +146,7 @@ features you are going to pursue.
    [RevertibleMove](src/nl/quintor/solitaire/game/moves/RevertibleMove.java). Start off with Move, and upgrade
    to RevertibleMove when the need arises.
    
-   -  **2.1: Initialize the GameState**  <p>
+   -  **2.1: Initialize the GameState**  Done<p>
       _Type_  
       MVP Logic Feature  
       _Points_  
@@ -156,7 +156,7 @@ features you are going to pursue.
       the start of a game, a new GameState instance must be created, and it various components must be initialized as well.
       For example, 52 cards have to be dealt. Make sure no null values remain.
      
-   -  **2.2: Stock cycling**  <p>
+   -  **2.2: Stock cycling**  Done <p>
       _Type_  
       MVP Logic Feature  
       _Points_  

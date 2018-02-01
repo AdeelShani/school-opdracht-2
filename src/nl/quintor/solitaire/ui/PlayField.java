@@ -69,6 +69,7 @@ public class PlayField implements nl.quintor.solitaire.ui.UI {
      * @source https://stackoverflow.com/questions/2255500/can-i-multiply-strings-in-java-to-repeat-sequences
      */
     private String multiplyString(int amount, String toReplaceWith) {
+        amount = amount < 0 ? 0 : amount;
         return new String(new char[amount]).replace("\0", toReplaceWith);
     }
 
