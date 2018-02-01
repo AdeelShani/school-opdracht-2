@@ -122,6 +122,7 @@ public class PlayField implements nl.quintor.solitaire.ui.UI {
 
         this.refresh(gameState);
         System.out.println("Available moves: ");
+        System.out.println("Cycle stock, Move, Revert, Help, Quit");
         System.out.print("What action do you want to take: ");
 
         return input.nextLine();
