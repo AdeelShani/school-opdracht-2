@@ -69,7 +69,7 @@ features you are going to pursue.
      show these columns as described. The [Deck](src/nl/quintor/solitaire/models/deck/Deck.java) class parameter 
      "invisibleCards" facilitates implementation of this feature.    
 
-   -  **1.3: Stock with top card visible**  <p>
+   -  **1.3: Stock with top card visible**  Done<p>
      _Type_  
      MVP UI Feature     
      _Points_  
@@ -79,7 +79,7 @@ features you are going to pursue.
      choose to move it to a stack or column, or put it at the bottom of the stock and turn open the next card, which is
      called "cycling the stock".
 
-   -  **1.4: Four stacks with top card visible**  <p>
+   -  **1.4: Four stacks with top card visible**  Done<p>
      _Type_  
      MVP UI Feature  
      _Points_  
@@ -87,7 +87,7 @@ features you are going to pursue.
      _Description_  
      The Stack Piles are A-2-...-Q-K sorted, with the only top card visible.
 
-   -  **1.5: Deck & card headers**  <p>
+   -  **1.5: Deck & card headers**  Done<p>
      _Type_  
      MVP UI Feature  
      _Points_  
