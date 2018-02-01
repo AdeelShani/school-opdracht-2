@@ -8,6 +8,8 @@ import nl.quintor.solitaire.models.state.GameState;
  * Class that represents a player action to Cycle the Deck.
  */
 public class CycleStock implements Move {
+    private final static String name = System.getProperty("os.name").contains("Windows") ? "Cycle Stock" : "Cycle Stock";
+
     @Override
     public String apply(GameState gameState) throws MoveException {
         Deck stock      = gameState.getStock();

@@ -169,7 +169,7 @@ features you are going to pursue.
       cards through it. You can also use a separate deck for down-faced cards (the waste). That's why the waste deck is 
       present in the [GameState](src/nl/quintor/solitaire/models/state/GameState.java) class. It's up to you.
      
-   -  **2.3: Move card(s)**  <p>
+   -  **2.3: Move card(s)**  Done<p>
       _Type_  
       MVP Logic Feature  
       _Points_  
@@ -254,7 +254,7 @@ features you are going to pursue.
    _Description_  
    The basic user interface can be improved in various ways.
    
-   -  **3.1: Stock header shows card count**  <p>
+   -  **3.1: Stock header shows card count** Done <p>
       _Type_  
       Optional UI Feature  
       _Points_  

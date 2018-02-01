@@ -52,7 +52,7 @@ public class PlayField implements nl.quintor.solitaire.ui.UI {
         //values
         for (int i = 0; i < GameState.stackPilesNames.length; i++) {
             Deck   stackPile = stackPiles.get(GameState.stackPilesNames[i]);
-            String stackCard = stackPile.size() > 0 ? stackPile.get((stackPiles.size() - 1)).toShortString() : "--";
+            String stackCard = stackPile.size() > 0 ? stackPile.get((stackPile.size() - 1)).toShortString() : "--";
             SecondLine += "\t" + stackCard + "\t";
         }
 

@@ -1,8 +1,6 @@
 package nl.quintor.solitaire;
 
-import nl.quintor.solitaire.game.moves.Move;
-import nl.quintor.solitaire.game.moves.Quit;
-import nl.quintor.solitaire.game.moves.CycleStock;
+import nl.quintor.solitaire.game.moves.*;
 import nl.quintor.solitaire.game.moves.ex.MoveException;
 import nl.quintor.solitaire.models.state.GameState;
 import nl.quintor.solitaire.ui.PlayField;
@@ -37,8 +35,8 @@ public class Main {
         // initialize the GameState, UI and all possible moves
         UI                    ui            = new PlayField();
         GameState             gameState     = new GameState();
-        List<String>          keys          = Arrays.asList("Q");
-        List<Move>            moves         = Arrays.asList(new Quit());
+        List<String>          keys          = Arrays.asList("C", "M", "R", "H", "Q");
+        List<Move>            moves         = Arrays.asList(new CycleStock(), new MoveCard(), new Revert(), new Help(), new Quit());
         HashMap<String, Move> possibleMoves = new HashMap<>();
         for (int i = 0; i < keys.size(); i++) possibleMoves.put(keys.get(i), moves.get(i));
 
