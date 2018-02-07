@@ -38,6 +38,12 @@ public class MoveCard implements Move {
         }
     }
 
+    /**
+     *
+     * @param gameState GameState object to which this move will be applied
+     * @return String
+     * @throws MoveException
+     */
     @Override
     public String apply(GameState gameState) throws MoveException {
         if (this.moveFrom == null || this.moveTo == null) {
@@ -68,18 +74,21 @@ public class MoveCard implements Move {
             throw new MoveException("You can't move the card you requested or it doesn't exist");
 
         // i don't like this code -_-
-        int fromPosition = Integer.parseInt(this.moveFrom.split("")[1]);
-        if (fromDeck.getInvisibleCards() <= fromPosition) {
-            if (fromDeck.size() - 2 <= fromDeck.getInvisibleCards() && fromDeck.size() - 2 >= 0) {
-                fromDeck.setInvisibleCards(fromDeck.size() - 2);
+        if (fromDeckType == DeckType.COLUMN) {
+            int fromPosition = Integer.parseInt(this.moveFrom.split("")[1]);
+            if (fromDeck.getInvisibleCards() <= fromPosition) {
+                if (fromDeck.size() - 2 <= fromDeck.getInvisibleCards() && fromDeck.size() - 2 >= 0 && fromDeckType == DeckType.COLUMN) {
+                    fromDeck.setInvisibleCards(fromDeck.size() - 2);
+                }
+            } else {
+                throw new MoveException("You can't move invisible card. Thats against rules");
             }
-            //@todo  finish revert code
-            gameState.getMoves().add(new Revert());
-            toDeck.addAll(fromCards);
-            fromDeck.removeAll(fromCards);
-        } else {
-            throw new MoveException("You can't move invisible card. Thats against rules");
         }
+
+        //@todo  finish revert code
+        gameState.getMoves().add(new Revert());
+        toDeck.addAll(fromCards);
+        fromDeck.removeAll(fromCards);
         return "Moved card ";
     }
 

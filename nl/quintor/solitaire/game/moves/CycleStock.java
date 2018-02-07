@@ -1,3 +1,8 @@
+/**
+ * @author Adnan Akbas 17005116
+ * @author Karam Es-Sabri 15098796
+ * @author Adeel Ahmad Shani Haq 17019060
+ */
 package nl.quintor.solitaire.game.moves;
 
 import nl.quintor.solitaire.game.moves.ex.MoveException;

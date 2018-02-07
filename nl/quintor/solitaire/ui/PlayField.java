@@ -1,3 +1,8 @@
+/**
+ * @author Adnan Akbas 17005116
+ * @author Karam Es-Sabri 15098796
+ * @author Adeel Ahmad Shani Haq 17019060
+ */
 package nl.quintor.solitaire.ui;
 
 import nl.quintor.solitaire.Helpers.Data;
@@ -6,7 +11,6 @@ import nl.quintor.solitaire.models.card.Card;
 import nl.quintor.solitaire.models.deck.Deck;
 import nl.quintor.solitaire.models.state.GameState;
 
-import java.sql.Array;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Scanner;
@@ -28,6 +32,7 @@ public class PlayField implements nl.quintor.solitaire.ui.UI {
 
     @Override
     public void refresh(GameState gameState) {
+        this.clearScreen();
         System.out.println(gameState.toString());
         System.out.println("");
         this.printStockAndStackPiles(gameState);
@@ -36,12 +41,25 @@ public class PlayField implements nl.quintor.solitaire.ui.UI {
         System.out.println("");
         if (!this.msg.isEmpty()) {
             System.out.println(this.msg);
+            this.msg = "";
         }
         if (!this.errorMsg.isEmpty()) {
-            System.out.println(errorMsg);
+            System.out.println(this.errorMsg);
+            this.errorMsg = "";
         }
     }
 
+    /**
+     * source: https://stackoverflow.com/questions/2979383/java-clear-the-console
+     */
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    /**
+     * @param gameState {@link GameState}
+     */
     private void printStockAndStackPiles(GameState gameState) {
         String            firstLine   = "\t", SecondLine = "\t";
         Deck              stockDeck   = gameState.getStock();
@@ -72,7 +90,9 @@ public class PlayField implements nl.quintor.solitaire.ui.UI {
         System.out.println(SecondLine);
     }
 
-
+    /**
+     * @param gameState {@link GameState}
+     */
     private void printColumns(GameState gameState) {
         Map<String, Deck> columns     = gameState.getColumns();
         String[]          columnNames = GameState.columnNames;
@@ -115,14 +135,19 @@ public class PlayField implements nl.quintor.solitaire.ui.UI {
         }
     }
 
-
+    /***
+     *
+     * @param gameState the game state to be visualized by the UI
+     * @param moves     the moves that are possible in this game state
+     * @return
+     */
     @Override
     public String refreshAndRequestMove(GameState gameState, Collection<Move> moves) {
         Scanner input = new Scanner(System.in);
 
         this.refresh(gameState);
         System.out.println("Available moves: ");
-        System.out.println("Cycle stock, Move, Revert, Help, Quit");
+        System.out.println("Cycle stock, Move, Help, Quit");
         System.out.print("What action do you want to take: ");
 
         return input.nextLine();

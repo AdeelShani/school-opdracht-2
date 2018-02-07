@@ -1,3 +1,8 @@
+/**
+ * @author Adnan Akbas 17005116
+ * @author Karam Es-Sabri 15098796
+ * @author Adeel Ahmad Shani Haq 17019060
+ */
 package nl.quintor.solitaire;
 
 import nl.quintor.solitaire.game.moves.*;
@@ -49,7 +54,7 @@ public class Main {
         // game loop
         while (!gameState.isGameOver()) {
             String playerInput = ui.refreshAndRequestMove(gameState, moves).toUpperCase();
-            try {
+           // try {
                 Move move = possibleMoves
                         .getOrDefault(playerInput.substring(0, 1), null)
                         .createInstance(playerInput);
@@ -58,10 +63,10 @@ public class Main {
                 } catch (MoveException e) {
                     ui.setErrorMessage(e.getMessage());
                 }
-            } catch (Exception e) {
-                ui.setErrorMessage("Unknown Move");
+          /*  } catch (Exception e) {
+                ui.setErrorMessage(e.getMessage());
 
-            }
+            }*/
 
         }
 
